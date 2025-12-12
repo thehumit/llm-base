@@ -1,29 +1,10 @@
-from settings import settings
-from openai import OpenAI
+"""Legacy entry point that proxies to the Typer-powered CLI."""
+
+from llm_cli.cli import app
 
 
-
-def main():
-
-    client = OpenAI(
-        base_url=settings.litellm_url,
-        api_key=settings.api_key,
-    )
-
-    # First API call with reasoning
-    response = client.chat.completions.create(
-      model=settings.model_name,
-      messages=[
-              {
-                "role": "user",
-                "content": "How many r's are in the word 'strawberry'?"
-              }
-            ],
-      extra_body={"reasoning": {"enabled": True}}
-    )
-
-    # Extract the assistant message with reasoning_details
-    print(response.choices[0].message) 
+def main() -> None:
+    app()
 
 
 if __name__ == "__main__":

@@ -5,6 +5,7 @@ class Settings(BaseSettings):
     model_name: str
     api_key: str
     litellm_url: str
+    tavily_api_key: str
 
     model_config = SettingsConfigDict(
         env_file=".env",
